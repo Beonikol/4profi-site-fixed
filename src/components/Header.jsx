@@ -7,7 +7,6 @@ export default function Header() {
   const { lang, setLang, t } = useI18n();
   const wrapRef = useRef(null);
 
-  // Пишемо фактичну висоту хедера в CSS-змінну --header-h
   useLayoutEffect(() => {
     const setVar = () => {
       if (!wrapRef.current) return;
@@ -41,13 +40,13 @@ export default function Header() {
     <header ref={wrapRef} className="sticky top-0 z-50 bg-[#297FA4] text-white shadow">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center">
-          {/* ваше лого */}
           <img src="/brand/logo.png" alt="4Profi" className="h-9 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-2 text-base">
           <Item to="/">{t("menu.home")}</Item>
           <Item to="/about">{t("menu.about")}</Item>
+          <Item to="/services">{t("menu.services")}</Item>
           <Item to="/portfolio">{t("menu.portfolio")}</Item>
           <Item to="/contacts">{t("menu.contacts")}</Item>
         </nav>
@@ -61,7 +60,7 @@ export default function Header() {
             {lang.toUpperCase()}
           </button>
 
-          <button className="md:hidden p-2" onClick={() => setOpen(v => !v)}>
+          <button className="md:hidden p-2" onClick={() => setOpen((v) => !v)}>
             <span className="block w-6 h-0.5 bg-white mb-1" />
             <span className="block w-6 h-0.5 bg-white mb-1" />
             <span className="block w-6 h-0.5 bg-white" />
@@ -74,6 +73,7 @@ export default function Header() {
           <div className="max-w-7xl mx-auto px-4 py-2 flex flex-col">
             <Item to="/">{t("menu.home")}</Item>
             <Item to="/about">{t("menu.about")}</Item>
+            <Item to="/services">{t("menu.services")}</Item>
             <Item to="/portfolio">{t("menu.portfolio")}</Item>
             <Item to="/contacts">{t("menu.contacts")}</Item>
           </div>
