@@ -1,12 +1,12 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { useParams } from "react-router-dom";
+import { useRouter } from "next/router";
 
-export default function ServiceDetail({ service }) {
-  const { slug } = useParams();
+export default function PortfolioDetail({ work }) {
+  const router = useRouter();
 
-  if (!service) return <p>Завантаження...</p>;
+  if (!work) return <p>Завантаження...</p>;
 
   return (
     <div className="p-4">
@@ -14,25 +14,26 @@ export default function ServiceDetail({ service }) {
         ← Назад
       </button>
 
-      <h1 className="text-2xl font-bold">{service.title}</h1>
-      {service.image && (
+      <h1 className="text-2xl font-bold">{work.title}</h1>
+      {work.image && (
         <img
-          src={`/uploads/${service.image}`}
-          alt={service.title}
+          src={`/uploads/${work.image}`}
+          alt={work.title}
           width={600}
           height={400}
           className="my-4"
         />
       )}
-      <p className="text-gray-700">{service.description}</p>
-      <p className="text-sm mt-2 text-gray-500">Категорія: {service.category}</p>
+      <p className="text-gray-700">{work.description}</p>
+      <p className="text-sm mt-2 text-gray-500">Категорія: {work.category}</p>
+      <p className="text-sm mt-1 text-gray-400">Дата: {work.date}</p>
     </div>
   );
 }
 
 export async function getStaticPaths() {
-  const servicesDir = path.join(process.cwd(), "content/services");
-  const filenames = fs.readdirSync(servicesDir);
+  const portfolioDir = path.join(process.cwd(), "content/portfolio");
+  const filenames = fs.readdirSync(portfolioDir);
 
   const paths = filenames.map((filename) => ({
     params: { slug: filename.replace(".md", "") },
@@ -47,7 +48,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const filePath = path.join(
     process.cwd(),
-    "content/services",
+    "content/portfolio",
     `${params.slug}.md`
   );
   const fileContents = fs.readFileSync(filePath, "utf8");
@@ -55,7 +56,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      service: data,
+      work: data,
     },
   };
 }

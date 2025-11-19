@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node ./node_modules/vite/bin/vite.js build",
+    "build": "vite build",
     "preview": "vite preview --port 4173",
     "vercel-build": "npm run build"
   },
@@ -13,6 +13,7 @@
     "@directus/sdk": "^20.1.1",
     "axios": "^1.13.2",
     "classnames": "^2.5.1",
+    "gray-matter": "^4.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.5",
