@@ -6,30 +6,13 @@ media_folder: "public/uploads"
 public_folder: "/uploads"
 
 collections:
-  - name: "services"
-    label: "Види послуг"
-    folder: "content/services"
-    create: true
-    slug: "{{slug}}"
-    extension: "md"
-    format: "yaml-frontmatter"
-    fields:
-      - { name: "title", label: "Назва", widget: "string" }
-      - { name: "slug", label: "URL-ідентифікатор", widget: "string" }
-      - { name: "category", label: "Категорія", widget: "select", options: ["laser", "uv", "sublimation"] }
-      - { name: "image", label: "Зображення", widget: "image" }
-      - { name: "description", label: "Опис", widget: "text" }
-
   - name: "portfolio"
-    label: "Портфоліо робіт"
+    label: "Портфоліо"
     folder: "content/portfolio"
     create: true
     slug: "{{slug}}"
-    extension: "md"
-    format: "yaml-frontmatter"
     fields:
-      - { name: "title", label: "Назва", widget: "string" }
-      - { name: "image", label: "Зображення", widget: "image" }
-      - { name: "category", label: "Категорія", widget: "select", options: ["laser", "uv", "sublimation"] }
-      - { name: "date", label: "Дата", widget: "datetime" }
-      - { name: "body", label: "Опис", widget: "markdown" }
+      - { label: "Назва", name: "title", widget: "string" }
+      - { label: "Дата", name: "date", widget: "datetime" }
+      - { label: "Зображення", name: "image", widget: "image" }
+      - { label: "Опис", name: "description", widget: "text" }
