@@ -1,5 +1,8 @@
 import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
+import Admin from "./pages/Admin.jsx"; // створи цей компонент
+
+<Route path="/admin" element={<Admin />} />
 
 import Header from "./components/Header.jsx";
 import Home from "./pages/Home.jsx";
