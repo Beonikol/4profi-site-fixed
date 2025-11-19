@@ -1,21 +1,31 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { SERVICES } from "../data/services.js";
-
-const TABS = [
-  { key: "all", label: "Усе" },
-  { key: "laser", label: "Лазер" },
-  { key: "sublimation", label: "Сублімація" },
-  { key: "uv", label: "УФ друк" },
-];
+import { getServices } from "../../api/directus";
 
 export default function Services() {
   const [tab, setTab] = useState("all");
+  const [items, setItems] = useState([]);
+
+useEffect(() => {
+  async function loadData() {
+    const data = await getServices();
+    console.log("Services data:", data); // <-- ось тут побачиш, що приходить
+    setItems(data);
+  }
+  loadData();
+}, []);
 
   const list = useMemo(() => {
-    if (tab === "all") return SERVICES;
-    return SERVICES.filter((i) => i.cat === tab);
-  }, [tab]);
+    if (tab === "all") return items;
+    return items.filter((i) => i.category === tab);
+  }, [tab, items]);
+
+  const TABS = [
+    { key: "all", label: "Усе" },
+    { key: "laser", label: "Лазер" },
+    { key: "sublimation", label: "Сублімація" },
+    { key: "uv", label: "УФ друк" },
+  ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -41,7 +51,7 @@ export default function Services() {
 
       {list.length === 0 ? (
         <div className="rounded-xl border p-8 text-center text-gray-500">
-          Наразі тут порожньо. Додайте файли у <code>public/portfolio/</code>.
+          Наразі тут порожньо.
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -49,24 +59,20 @@ export default function Services() {
             <Link
               key={it.id}
               to={`/services/${it.id}`}
-              className="group rounded-2xl overflow-hidden border bg-white shadow-sm hover:shadow-md transition"
+              className="group rounded-2xl overflow-hidden border bg-white shadow-sm"
             >
               <div
                 className="h-[220px] w-full bg-gray-100"
                 style={{
-                  backgroundImage: `url(${it.img})`,
+                  backgroundImage: `url(https://directus-4profi.onrender.com/assets/${it.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
               />
-              <figcaption className="p-4">
+              <div className="p-4">
                 <div className="text-base font-medium">{it.title}</div>
-                <div className="text-xs text-gray-500 mt-1">
-                  {it.cat === "laser" && "Лазерне гравіювання"}
-                  {it.cat === "sublimation" && "Сублімація"}
-                  {it.cat === "uv" && "УФ друк"}
-                </div>
-              </figcaption>
+                <div className="text-xs text-gray-500 mt-1">{it.category}</div>
+              </div>
             </Link>
           ))}
         </div>

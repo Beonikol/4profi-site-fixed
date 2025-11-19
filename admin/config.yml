@@ -1,0 +1,30 @@
+backend:
+  name: git-gateway
+  branch: main  # головна гілка репозиторію
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "services"
+    label: "Види послуг"
+    folder: "content/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Короткий текст", name: "subtitle", widget: "string", required: false }
+      - { label: "Опис", name: "description", widget: "markdown" }
+      - { label: "Категорія", name: "category", widget: "select", options: ["Лазер", "УФ друк", "Сублімація", "Інше"] }
+      - { label: "Зображення", name: "image", widget: "image" }
+
+  - name: "portfolio"
+    label: "Портфоліо робіт"
+    folder: "content/portfolio"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Назва роботи", name: "title", widget: "string" }
+      - { label: "Опис", name: "description", widget: "markdown", required: false }
+      - { label: "Зображення роботи", name: "image", widget: "image" }
+      - { label: "Дата", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
