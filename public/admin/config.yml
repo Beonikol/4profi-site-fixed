@@ -1,0 +1,30 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "services"
+    label: "Види послуг"
+    folder: "content/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Назва", name: "title", widget: "string" }
+      - { label: "URL", name: "slug", widget: "string" }
+      - { label: "Категорія", name: "category", widget: "string" }
+      - { label: "Зображення", name: "image", widget: "image" }
+      - { label: "Опис", name: "description", widget: "text" }
+
+  - name: "portfolio"
+    label: "Портфоліо робіт"
+    folder: "content/portfolio"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Назва", name: "title", widget: "string" }
+      - { label: "Зображення", name: "image", widget: "image" }
+      - { label: "Короткий опис", name: "description", widget: "text" }
+      - { label: "Дата", name: "date", widget: "datetime" }
