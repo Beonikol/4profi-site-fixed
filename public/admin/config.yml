@@ -26,5 +26,6 @@ collections:
     fields:
       - { label: "Назва", name: "title", widget: "string" }
       - { label: "Зображення", name: "image", widget: "image" }
+      - { label: "Категорія", name: "category", widget: "string" }
       - { label: "Короткий опис", name: "description", widget: "text" }
       - { label: "Дата", name: "date", widget: "datetime" }
