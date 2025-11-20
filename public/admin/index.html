@@ -3,15 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <title>Content Manager</title>
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   </head>
   <body>
-    <script>
-      window.CMS_MANUAL_INIT = true;
-    </script>
     <div id="nc-root"></div>
+
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
     <script>
-      CMS.init();
+      // Ініціалізація CMS тільки після того, як він буде завантажений
+      if (typeof CMS !== 'undefined') {
+        CMS.init();
+      } else {
+        console.error('CMS is not defined. Check if the script was loaded correctly.');
+      }
     </script>
   </body>
 </html>
