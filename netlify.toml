@@ -1,9 +1,14 @@
 [[redirects]]
-  from = "/admin/*"
+  from = "/admin"
   to = "/admin/index.html"
   status = 200
 
 [[redirects]]
-  from = "/.netlify/identity/*"
+  from = "/admin/?invite_token=/:token"
+  to = "/admin/index.html?invite_token=:token"
+  status = 200
+
+[[redirects]]
+  from = "/*.html"
   to = "/admin/index.html"
   status = 200
