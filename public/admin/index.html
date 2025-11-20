@@ -5,16 +5,16 @@
     <title>Content Manager</title>
   </head>
   <body>
-    <div id="nc-root"></div>
-
     <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
     <script>
-      // Ініціалізація CMS тільки після того, як він буде завантажений
-      if (typeof CMS !== 'undefined') {
-        CMS.init();
-      } else {
-        console.error('CMS is not defined. Check if the script was loaded correctly.');
-      }
+      window.addEventListener('load', () => {
+        if (typeof CMS !== 'undefined') {
+          CMS.init();
+        } else {
+          console.error('CMS is not defined');
+        }
+      });
     </script>
+    <div id="nc-root"></div>
   </body>
 </html>
