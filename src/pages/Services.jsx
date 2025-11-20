@@ -29,7 +29,7 @@ export default function ServicesPage({ services }) {
 }
 
 export async function getStaticProps() {
-  const servicesDir = path.join(process.cwd(), "content/services");
+  const servicesDir = path.join(process.cwd(), "src/pages/content/services");
   const filenames = fs.readdirSync(servicesDir);
 
   const services = filenames.map((filename) => {
